@@ -2,3 +2,6 @@
 cabal.sandbox.config
 dist-newstyle/
 dist/
+
+# mingw droppings
+.ghc.environment.x86_64-mingw32-8.6.3
