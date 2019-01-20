@@ -5,6 +5,7 @@ import qualified Data.Text       as T
 import qualified Data.Text.Encoding as E
 import Data.Text.Encoding.Error (lenientDecode)
 import System.Environment
+import Off
 
 main :: IO ()
 main = 
@@ -16,8 +17,8 @@ main =
           Left err    -> putStrLn err
           Right coord ->
             do
-              result <- readInputFile inputFilePath
-              putStrLn $ unlines result
+              inputLines <- readInputFile inputFilePath
+              putStrLn $ show $ parseOffFile inputLines
               return ()
       otherwise    -> putStrLn usage
 
