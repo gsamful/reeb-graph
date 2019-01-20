@@ -1,20 +1,25 @@
 module Simplex where
 
+-- A couple of auxiliary types to prevent conflating between various Int-valued types.
+data InputPointId = InputPointId { iToInt :: Int } deriving (Show, Eq, Ord)
+data FunctionValueRank = FunctionValueRank { rToInt :: Int } deriving (Show, Eq, Ord)
+data CloneId = CloneId { cToInt :: Int } deriving (Show, Eq, Ord)
+
 data InputVertex = InputVertex
-  { vertexId :: Int
-  , fRank    :: Int
+  { vertexId :: InputPointId
+  , fRank    :: FunctionValueRank
   } deriving (Show, Eq)
 
 data CloneVertex = CloneVertex
   { inputVertex :: InputVertex
-  , cloneId     :: Int
+  , cloneId     :: CloneId
   } deriving (Show, Eq)
 
-type Vertex = Either InputVertex CloneVertex
+type Vertex = Either CloneVertex InputVertex
 
 data Triangle = Triangle
   { v1 :: Vertex
-  , v2 :: Vertex
+  , v2 :: InputVertex
   , v3 :: Vertex
   } deriving (Show, Eq)
 

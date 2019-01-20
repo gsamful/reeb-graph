@@ -15,10 +15,10 @@ main =
       coordFlag : inputFilePath : [] ->
         case parseFunctionCoordinate coordFlag of
           Left err    -> putStrLn err
-          Right coord ->
+          Right funcCoord ->
             do
               inputLines <- readInputFile inputFilePath
-              putStrLn $ show $ parseOffFile inputLines
+              putStrLn $ show $ parseOffFile inputLines funcCoord
               return ()
       otherwise    -> putStrLn usage
 
@@ -31,8 +31,6 @@ usage =
   \  \n\
   \  The second argument (required) specifies the OFF-format input\n\
   \  file to process."
-
-data FunctionCoordinate = X | Y | Z deriving (Show, Eq)
 
 parseFunctionCoordinate :: [Char] -> Either [Char] FunctionCoordinate
 parseFunctionCoordinate str =
