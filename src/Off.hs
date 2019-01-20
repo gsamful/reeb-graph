@@ -2,7 +2,7 @@ module Off where
 
 import Text.Read
 import Simplex as S
-import Data.List (sortBy)
+import Data.List (sort, sortBy)
 import qualified Data.Map as Map
 
 {-
@@ -137,5 +137,5 @@ offToSimplicialComplex funcCoord points faces =
 
   in
     case simplexTriangles of
-      Just triangles -> Right triangles
+      Just triangles -> Right $ sort triangles
       Nothing        -> Left "Error: Unable to convert OFF file to simplicial complex."
