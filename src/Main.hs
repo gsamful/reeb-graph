@@ -6,6 +6,7 @@ import qualified Data.Text.Encoding as E
 import Data.Text.Encoding.Error (lenientDecode)
 import System.Environment
 import Off
+import Algorithm
 
 main :: IO ()
 main = 
@@ -14,12 +15,13 @@ main =
     case args of
       coordFlag : inputFilePath : [] ->
         case parseFunctionCoordinate coordFlag of
-          Left err    -> putStrLn err
+          Left err        -> putStrLn err
           Right funcCoord ->
             do
               inputLines <- readInputFile inputFilePath
-              putStrLn $ show $ parseOffFile inputLines funcCoord
-              return ()
+              case parseOffFile inputLines funcCoord of
+                Left err        -> putStrLn err
+                Right triangles -> putStrLn $ show $ reebGraph triangles
       otherwise    -> putStrLn usage
 
 usage :: [Char]

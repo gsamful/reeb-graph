@@ -3,7 +3,7 @@ module Off where
 import Text.Read
 import Simplex as S
 import Data.List (sort, sortBy)
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 
 {-
 TODO:  This is an extremely rudimentary, and frankly extremely crappy, parser.
