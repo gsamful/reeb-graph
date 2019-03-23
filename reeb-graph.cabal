@@ -120,3 +120,4 @@ test-suite test
     , tasty-hunit
     , HUnit
     , reeb-graph
+    , mtl
