@@ -66,9 +66,8 @@ library
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.12 && <4.13
                        , bytestring
-                       , text
                        , containers
-                       , vector
+                       , text
                        , mtl
 
   -- Directories containing source files.
@@ -83,13 +82,20 @@ executable reeb-graph
   main-is:             Main.hs
 
   -- Modules included in this executable, other than Main.
-  -- other-modules:
+  other-modules: Off
+                 Simplex
+                 Algorithm
+                 UnionFind
 
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.12 && <4.13
+                       , bytestring
+                       , containers
+                       , text
+                       , mtl
 
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -97,3 +103,20 @@ executable reeb-graph
   -- Base language which the package is written in.
   default-language:    Haskell2010
 
+test-suite test
+  default-language:
+    Haskell2010
+  type:
+    exitcode-stdio-1.0
+  hs-source-dirs:
+    tests
+  main-is:
+    Main.hs
+  other-modules:
+    UnionFindTest
+  build-depends:
+    base >= 4.12 && <4.13
+    , tasty >= 1
+    , tasty-hunit
+    , HUnit
+    , reeb-graph
